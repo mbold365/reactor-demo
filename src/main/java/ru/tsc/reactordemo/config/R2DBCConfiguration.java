@@ -1,6 +1,5 @@
 package ru.tsc.reactordemo.config;
 
-
 import io.r2dbc.h2.H2ConnectionConfiguration;
 import io.r2dbc.h2.H2ConnectionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;

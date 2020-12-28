@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="insert-into-roles" author="mboldaev">
+        <insert tableName="roles">
+            <column name="role_name" value="ROLE_ADMIN"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="role_name" value="ROLE_MANAGER"/>
+        </insert>
+        <rollback>
+            <dropTable tableName="roles"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="insert-into-users" author="mboldaev">
+        <insert tableName="users">
+            <column name="username" value="admin"/>
+            <column name="password" value="$2y$12$YjQep9NhBqqzyIk.tEwDE.2Jv/Q60o6.dQt9yQaZExGRX/aDZJlOe"/>
+        </insert>
+        <insert tableName="users">
+            <column name="username" value="manager"/>
+            <column name="password" value="$2y$12$Ese.BoKBRbzRScLESDHnG.4r6rs.XByVLbFOqYfU7QF0B0u0DxGJW"/>
+        </insert>
+        <rollback>
+            <dropTable tableName="users"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="insert-into-user_roles" author="mboldaev">
+        <insert tableName="user_roles">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" value="2"/>
+            <column name="role_id" value="2"/>
+        </insert>
+        <rollback>
+            <dropTable tableName="user_roles"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="insert-into-guests" author="mboldaev">
+        <insert tableName="guests">
+            <column name="first_name" value="Ivan"/>
+            <column name="last_name" value="Ivanov"/>
+            <column name="patronymic" value="Ivanovich"/>
+            <column name="visit_date" value="2020-12-24"/>
+        </insert>
+        <insert tableName="guests">
+            <column name="first_name" value="Petr"/>
+            <column name="last_name" value="Petrov"/>
+            <column name="patronymic" value="Petrovich"/>
+            <column name="visit_date" value="2020-12-05"/>
+        </insert>
+        <rollback>
+            <dropTable tableName="guests"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="insert-into-ski_passes" author="mboldaev">
+        <insert tableName="ski_passes">
+            <column name="pass_validity" value="5 hours"/>
+            <column name="price" value="500.5"/>
+        </insert>
+        <insert tableName="ski_passes">
+            <column name="pass_validity" value="2 hours"/>
+            <column name="price" value="250"/>
+        </insert>
+        <rollback>
+            <dropTable tableName="ski_passes"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="insert-into-coaches" author="mboldaev">
+        <insert tableName="coaches">
+            <column name="first_name" value="Anton"/>
+            <column name="last_name" value="Sidorov"/>
+            <column name="patronymic" value="Pavlovich"/>
+            <column name="category" value="snowboard"/>
+            <column name="birth_date" value="1980-07-05"/>
+            <column name="gender" value="male"/>
+            <column name="photo_url" value="https://antislang.ru/wp-content/uploads/%D1%80%D0%BE%D1%84%D0%BB%D0%B0%D0%BD-%D0%BB%D0%B8%D1%86%D0%BE.png"/>
+        </insert>
+        <insert tableName="coaches">
+            <column name="first_name" value="Anna"/>
+            <column name="last_name" value="Karenina"/>
+            <column name="category" value="ski"/>
+            <column name="birth_date" value="1990-03-27"/>
+            <column name="gender" value="female"/>
+            <column name="photo_url" value="https://image.freepik.com/free-photo/girl-with-ski_1157-9618.jpg"/>
+        </insert>
+        <rollback>
+            <dropTable tableName="coaches"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="insert-into-guest_ski_pass" author="mboldaev">
+        <insert tableName="guest_ski_pass">
+            <column name="guest_id" value="1"/>
+            <column name="ski_pass_id" value="1"/>
+        </insert>
+        <rollback>
+            <dropTable tableName="guest_ski_pass"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="insert-into-coach_ski_pass" author="mboldaev">
+        <insert tableName="coach_ski_pass">
+            <column name="coach_id" value="2"/>
+            <column name="ski_pass_id" value="2"/>
+        </insert>
+        <rollback>
+            <dropTable tableName="coach_ski_pass"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="insert-into-guest_coach" author="mboldaev">
+        <insert tableName="guest_coach">
+            <column name="guest_id" value="1"/>
+            <column name="coach_id" value="1"/>
+        </insert>
+        <insert tableName="guest_coach">
+            <column name="guest_id" value="2"/>
+            <column name="coach_id" value="2"/>
+        </insert>
+        <rollback>
+            <dropTable tableName="guest_coach"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

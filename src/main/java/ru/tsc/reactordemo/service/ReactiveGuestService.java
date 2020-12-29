@@ -10,7 +10,7 @@ public interface ReactiveGuestService {
 
     Mono<Guest> saveOrUpdate(Optional<Guest> optionalGuest);
 
-    void delete(Optional<Long> optionalId);
+    Mono<Void> delete(Optional<Long> optionalId);
 
     Mono<Guest> getById(Optional<Long> optionalId);
 

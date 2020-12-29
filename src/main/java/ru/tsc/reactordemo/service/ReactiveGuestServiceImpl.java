@@ -26,10 +26,10 @@ public class ReactiveGuestServiceImpl implements ReactiveGuestService {
     }
 
     @Override
-    public void delete(Optional<Long> optionalId) {
+    public Mono<Void> delete(Optional<Long> optionalId) {
         Long id = optionalId.orElseThrow(NoSuchElementException::new);
         log.info("Deleting guest by id : {}", id);
-        guestRepository.deleteById(id);
+        return guestRepository.deleteById(id);
     }
 
     @Override

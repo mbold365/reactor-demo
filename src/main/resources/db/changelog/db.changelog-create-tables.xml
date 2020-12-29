@@ -17,7 +17,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="patronymic" type="VARCHAR(45)"/>
-            <column name="visit_date" type="DATE">
+            <column name="visit_date" type="VARCHAR(45)">
                 <constraints nullable="false"/>
             </column>
             <column name="email" type="VARCHAR(255)" defaultValue="mboldaevres@gmail.com"/>

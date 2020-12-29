@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -13,7 +14,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table("guests")
-public class Guest {
+public class Guest implements Persistable<Long> {
 
     @Id
     private Long id;
@@ -31,5 +32,10 @@ public class Guest {
     private String email;
 
     @Column("visit_date")
-    private Date visitDate;
+    private String visitDate;
+
+    @Override
+    public boolean isNew() {
+        return true;
+    }
 }

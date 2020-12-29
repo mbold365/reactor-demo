@@ -2,8 +2,6 @@ package ru.tsc.reactordemo.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -21,32 +19,22 @@ public class ReactiveGuestController {
     private final ReactiveGuestService guestService;
 
     @PostMapping
-    public ResponseEntity<Mono<Guest>> saveGuest(@RequestBody Optional<Guest> guest) {
-        guestService.saveOrUpdate(guest);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @PutMapping
-    public ResponseEntity<Mono<Guest>> updateGuest(@RequestBody Optional<Guest> optionalGuest) {
-        Mono<Guest> guest = guestService.saveOrUpdate(optionalGuest);
-        return new ResponseEntity<>(guest, HttpStatus.OK);
+    public Mono<Guest> saveGuest(@RequestBody Optional<Guest> guest) {
+        return guestService.saveOrUpdate(guest);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Mono<Guest>> deleteGuestById(@PathVariable("id") Optional<Long> id) {
-        guestService.delete(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public Mono<Void> deleteGuestById(@PathVariable("id") Optional<Long> id) {
+        return guestService.delete(id);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Mono<Guest>> getGuestById(@PathVariable("id") Optional<Long> id) {
-        Mono<Guest> guest = guestService.getById(id);
-        return new ResponseEntity<>(guest, HttpStatus.OK);
+    public Mono<Guest> getGuestById(@PathVariable("id") Optional<Long> id) {
+        return guestService.getById(id);
     }
 
     @GetMapping
-    public ResponseEntity<Flux<Guest>> getAllGuests() {
-        Flux<Guest> guests = guestService.getAll();
-        return new ResponseEntity<>(guests, HttpStatus.OK);
+    public Flux<Guest> getAllGuests() {
+        return guestService.getAll();
     }
 }
